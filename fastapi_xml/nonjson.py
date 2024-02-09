@@ -25,9 +25,7 @@ from fastapi.datastructures import DefaultPlaceholder
 from fastapi.datastructures import FormData
 from fastapi.dependencies.models import Dependant
 from fastapi.dependencies.utils import solve_dependencies
-from fastapi.encoders import DictIntStrAny
 from fastapi.encoders import jsonable_encoder
-from fastapi.encoders import SetIntStr
 from fastapi.exceptions import RequestValidationError
 from fastapi.openapi.utils import get_openapi
 from fastapi.openapi.utils import OpenAPI
@@ -46,6 +44,9 @@ from starlette.responses import Response
 OpenApiSchemaModifier = Callable[[FastAPI, OpenAPI, Optional[Mapping[str, Any]]], bool]
 
 OPENAPI_SCHEMA_MODIFIER: List[OpenApiSchemaModifier] = []
+
+SetIntStr = Set[Union[int, str]]
+DictIntStrAny = Dict[Union[int, str], Any]
 
 
 class BodyDecodeError(ValueError):
