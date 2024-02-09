@@ -697,7 +697,7 @@ def _get_route_models(app: FastAPI, openapi: OpenAPI) -> List["Type[BaseModel]"]
         for model in get_fields_from_routes(app.routes)
         if isinstance(openapi.components, Components)
         and isinstance(openapi.components.schemas, dict)
-        and model.__name__ in openapi.components.schemas
+        and model.name in openapi.components.schemas
         and issubclass(model, BaseModel)
     ]
 
