@@ -19,7 +19,7 @@ from fastapi.openapi.models import Components
 from fastapi.openapi.models import OpenAPI
 from fastapi.openapi.models import Schema
 from fastapi.openapi.models import XML
-from fastapi.openapi.utils import get_flat_models_from_routes
+from fastapi.openapi.utils import get_fields_from_routes
 from pydantic import BaseModel
 from pydantic.config import BaseConfig
 from pydantic.dataclasses import create_model
@@ -694,7 +694,7 @@ def _get_route_models(app: FastAPI, openapi: OpenAPI) -> List["Type[BaseModel]"]
     """
     return [
         model
-        for model in get_flat_models_from_routes(app.routes)
+        for model in get_fields_from_routes(app.routes)
         if isinstance(openapi.components, Components)
         and isinstance(openapi.components.schemas, dict)
         and model.__name__ in openapi.components.schemas
